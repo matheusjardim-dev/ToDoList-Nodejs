@@ -24,8 +24,9 @@ const deleteTask = async (id) => {
 }
 
 const updateTask = async (id, task) => {
-    const query = 'UPDATE todolist.tasks SET title = ?, status = ? WHERE id = ?';
-    const [updatedTask] = await connection.execute(query, [id]);
+    const { title, status} = task;
+    const query = 'UPDATE todolist.tasks SET title = ?, status = ? WHERE id_tasks = ?';
+    const [updatedTask] = await connection.execute(query, [title, status, id]);
 
     return {updatedTask};
 }
